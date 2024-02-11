@@ -9,8 +9,9 @@ interface Kakao {
   kakaotalk: string;
   email: string;
 }
-interface SnsUser {
+interface SnsUser{
 //<이 부분을 작성하시오!>
+[temp:string]:number|string;
 email: string;
 }
 // 다음 코드에 오류가 없으면 통과!
