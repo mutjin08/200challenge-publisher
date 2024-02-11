@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>번호</th>
+        <th>이름</th>
+        <th>근무시간</th>
+        <th>시간당급여액</th>
+        <th>기본액</th>
+        <th>초과수당</th>
+        <th>합계</th>
+        <th>세액</th>
+        <th>실지불액</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+  <div id="result"></div>
+</body>
+</html>
+
+<script>
+  window.onload = load;
+  let raw_data = {
+    "base_time": 20,
+    "list": [
+      {"id": 1, "username": "홍길동", "work_time": 40, "per_pay": 10000},
+      {"id": 2, "username": "송민헌", "work_time": 20, "per_pay": 20000},
+      {"id": 3, "username": "장길산", "work_time": 30, "per_pay": 30000},
+      {"id": 4, "username": "임꺽정", "work_time": 10, "per_pay": 40000},
+      {"id": 5, "username": "강민구", "work_time": 30, "per_pay": 10000},
+    ]
+  }
+
+  function load() {
+    let tbody = document.getElementById("tbody");
+    let base_time = raw_data.base_time;
+    let data = raw_data.list;
+    let result = 0;
+    
+    for (let i = 0; i < data.length; i++) {
+      let row = tbody.insertRow(tbody.rows.length);
+
+      let cell0 = row.insertCell(0);
+      let cell1 = row.insertCell(1);
+      let cell2 = row.insertCell(2);
+      let cell3 = row.insertCell(3);
+      let cell4 = row.insertCell(4);
+      let cell5 = row.insertCell(5);
+      let cell6 = row.insertCell(6);
+      let cell7 = row.insertCell(7);
+      let cell8 = row.insertCell(8);
+
+      cell0.innerHTML = data[i].id;
+      cell1.innerHTML = data[i].username;
+      cell2.innerHTML = data[i].work_time;
+      cell3.innerHTML = data[i].per_pay;
+
+      let base_pay, addi_pay, total_pay;
+      base_pay = data[i].work_time * data[i].per_pay;
+      if (data[i].work_time > base_time) {
+        addi_pay = (data[i].work_time - base_time) * data[i].per_pay * 0.5;
+      } else {
+        addi_pay = 0;
+      }
+      total_pay = base_pay + addi_pay;
+
+      cell4.innerHTML = base_pay;
+      cell5.innerHTML = addi_pay;
+      cell6.innerHTML = total_pay;
+      cell7.innerHTML = total_pay * 0.033;
+      cell8.innerHTML = total_pay * 0.967;
+      
+      result += total_pay * 0.967;
+    }
+    document.getElementById("result").innerHTML = result;
+  }
+</script>
