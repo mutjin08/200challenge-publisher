@@ -1,0 +1,23 @@
+table {
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid blue;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: blue;
+  border: 1px solid blue;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+td {
+  border: 1px solid blue;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  vertical-align: middle;
+  text-align: center;
+}
